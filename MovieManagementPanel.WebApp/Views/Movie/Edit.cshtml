@@ -1,0 +1,46 @@
+﻿@model MovieEditModel
+
+@{
+    ViewData["Title"] = "Film Düzenle";
+}
+
+<h4>@ViewData["Title"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input asp-for="Id" type="hidden" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="RealeseDate" class="control-label"></label>
+                <input asp-for="RealeseDate" type="date" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="SaloonsId" class="control-label"></label>
+                <select asp-for="SaloonsId" asp-items="ViewBag.Saloons" multiple class="form-control">
+                    @if (!Model.SaloonsId.Any())
+                    {
+                        <option selected disabled>Salon Seç</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

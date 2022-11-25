@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MovieListModel>
+
+@{
+    ViewData["Title"] = "Filmler";
+}
+
+<h4>@ViewData["Title"]</h4>
+<hr />
+
+@await Component.InvokeAsync("MovieSearch")
+
+<p>
+    <a asp-action="Create">Yeni Film Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealeseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Saloons)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @item.RealeseDate.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Saloons)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.MovieId  }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.MovieId  })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

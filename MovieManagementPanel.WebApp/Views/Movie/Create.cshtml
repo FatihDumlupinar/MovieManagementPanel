@@ -1,0 +1,40 @@
+﻿@model MovieCreateModel
+
+@{
+    ViewData["Title"] = "Yeni Film";
+}
+
+<h4>@ViewData["Title"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="RealeseDate" class="control-label"></label>
+                <input asp-for="RealeseDate" type="date" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="SaloonsId" class="control-label"></label>
+                @Html.DropDownList("SaloonsId", new SelectList(ViewBag.saloons, "Id", "Name"),"Salon Seç",new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

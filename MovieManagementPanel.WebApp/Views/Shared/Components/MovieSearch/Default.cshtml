@@ -1,0 +1,36 @@
+﻿@model MovieListSearchModel
+
+<div class="container">
+    <div class="row">
+        <form asp-action="Index" asp-controller="Movie">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="row">
+                 <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="RealeseDate_Start" class="control-label"></label>
+                    <input asp-for="RealeseDate_Start" type="date" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="RealeseDate_End" class="control-label"></label>
+                    <input asp-for="RealeseDate_End" type="date" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="SaloonId" class="control-label"></label>
+                     @Html.DropDownList("SaloonId", new SelectList(ViewBag.saloons, "Id", "Name"),"Salon Seç",new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="submit" value="Ara" class="btn btn-primary" />
+                    <input type="reset" value="Reset" class="btn btn-primary" />
+                </div>
+            </div>
+            </div>
+           
+        </form>
+    </div>
+</div>
