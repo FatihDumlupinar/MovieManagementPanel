@@ -18,6 +18,7 @@ namespace MovieManagementPanel.Persistence.Extensions
 
             serviceCollection.AddDbContext<AppDbContext>(options =>
                 {
+                    options.EnableSensitiveDataLogging();
                     options.UseLazyLoadingProxies();
                     options.UseSqlServer(configuration.GetConnectionString("SQLConnection"));
                 });

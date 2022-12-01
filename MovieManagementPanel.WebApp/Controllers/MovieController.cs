@@ -217,7 +217,7 @@ namespace MovieManagementPanel.WebApp.Controllers
             var movieAndSaloons = await _unitOfWork.MoviesAndSaloons
                 .Find(i => i.IsActive && i.Movie == movie)
                 .Include(i => i.Movie)
-                .AsNoTrackingWithIdentityResolution().ToListAsync(cancellationToken);
+                .ToListAsync(cancellationToken);
             if (movieAndSaloons.Any())
             {
                 await _unitOfWork.MoviesAndSaloons.DeleteRangeAsync(movieAndSaloons, cancellationToken);

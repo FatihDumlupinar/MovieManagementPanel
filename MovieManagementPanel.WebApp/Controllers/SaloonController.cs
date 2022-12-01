@@ -65,8 +65,7 @@ namespace MovieManagementPanel.WebApp.Controllers
             if (model.MovieIds.Any())
             {
                 var movies = await _unitOfWork.Movies.
-                    Find(i => i.IsActive && model.MovieIds.Contains(i.Id))
-                    .AsNoTrackingWithIdentityResolution().ToListAsync(cancellationToken);
+                    Find(i => i.IsActive && model.MovieIds.Contains(i.Id)).ToListAsync(cancellationToken);
 
                 var movieAndSaloonList = movies.Select(i => new MovieAndSaloon()
                 {
@@ -168,7 +167,6 @@ namespace MovieManagementPanel.WebApp.Controllers
             var movieAndSaloonEntities = await _unitOfWork.MoviesAndSaloons
                 .Find(i => i.IsActive && i.Saloon == saloonEntity)
                 .Include(i => i.Saloon)
-                .AsNoTrackingWithIdentityResolution()
                 .ToListAsync(cancellationToken);
             if (movieAndSaloonEntities.Any())
             {
